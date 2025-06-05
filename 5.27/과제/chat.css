@@ -1,0 +1,68 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+* {
+    font-family: "Dongle", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #b9985f;
+}
+
+.chat_container {
+    width: 400px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #ffffff;
+
+}
+
+.header {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.chat_message {
+    flex: 1;
+    padding: 10px;
+}
+
+.chat_input {
+    display: flex;
+    border-top: 1px solid #dedbdb;
+}
+
+#message {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-right: 1px solid #dedbdb;
+    font-size: 1em;
+}
+
+#send-button {
+    padding: 10px;
+    border: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-size: 20px
+}
+
+#send-button:hover {
+    background-color: gray; /* 의사클래스 사용 */
+}

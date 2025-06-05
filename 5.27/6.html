@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>Document</title>
+    <style>
+        .menu{
+            padding: 10px;
+            border-bottom: 1px solid black;
+        }
+        .menu > li{
+            display: inline-block;
+            text-align: center;
+        }
+        li > a{
+            display: inline-block;
+            width: 80px;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+        a:hover{
+            color: white;
+            background-color: gray;
+        }
+
+        a:active{
+            color: white;
+            background-color: black;
+        }
+        li:nth-child(n){
+            /* ()안에 n을 활용할 수 있음.
+                n이 들어갈 경우 모두 됨 */
+            font-size: 20px;
+        }
+
+        a::before{
+            /*요소를 생성, after before 활발하게 사용되는 요소*/
+            content: "보기";
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <ul class="menu">
+        <li><a href="#">사전</a></li>
+        <li><a href="#">뉴스</a></li>
+        <li><a href="#">증권</a></li>
+        <li><a href="#">지도</a></li>
+    </ul>
+</body>
+</html>

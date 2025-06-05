@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택자</title>
+    <style>
+        /*기호와 함께 사용하는 속성 선택자
+        * : 값의 포함여부
+        ^ : 값의 시작 여부
+        $ : 값의 끝 여부 
+        */
+        [width $= "0"]{
+            border: 5px dashed blue;
+        }
+
+        p > em{
+            color: blue;
+            /*웹 요소들이 포함되는 요소*/
+        }
+        #sam ~ p{
+            /*인접형제 선택자
+            + : 바로 뒤
+            ~ : 전체 
+            유의사항 : 뒤이어 등장하는 선택자들만 사용가능. 앞은 안되요
+            */
+            
+            color: orange;
+        }
+
+</style>
+</head>
+<body>
+    <img src="images/unclejohn.png" width="300" height="200" alt="unclejohn">
+    <img src="images/unclejohn.png" width="300" height="200">
+    <img src="images/unclejohn.png" width="300" height="200" id="sam">
+    <p>엉클존과 함께하는 영어</p>
+    <P>프리토킹, <em>문법</em>을 다양하게 공부한답니닷</P>
+    <p>아주 재밌는 영어 공부</p>
+    <p>구경오세유</p>
+</body>
+</html>

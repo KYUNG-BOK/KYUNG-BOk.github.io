@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>배경화면</title>
+    <style>
+        div{
+            width: 300ox;
+            height: 300px;
+            padding: 20px;
+            border: 20px double white;
+
+            /*background-color: black; */
+
+            background-clip: border-box;
+
+            background-image: url(../1회차/images/unclejohn.png);
+            background-size: 949px 300px; /*개발자 모드 보면서 확인*/
+            background-repeat: no-repeat; /*반복하는지 안하는지 하는지*/
+
+            background-origin: content-box; /*content, padding, border있음*/
+            }
+    </style>
+</head>
+<body>
+    <div></div>    
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            margin: 0;
+        }
+        ul{
+            display: flex;
+            padding: 0;
+            list-style-type: none;
+            height: 200px;
+            /* flex-flow에 두개 넣을 수 있음
+            flex-direction: row;
+            flex-wrap: nowrap;
+            따로 사용하는게 일반적임.
+            
+            flow-flow: row wrap;
+            */
+
+            align-items: center;
+        }
+
+        li{
+            background-color: tomato;
+        }
+
+        li:nth-child(2n){
+            background-color: teal;
+        }
+
+        li:nth-child(2){
+            /*flex-grow: 1;
+            flex-shrink: 2; */
+        }
+        li:nth-child(4){
+            /* flex-grow: 1; */
+        }
+        li:nth-child(2n-1){
+            /* flex-basis: 100px;
+            flex-grow: 1; */
+            /*flex 단축 속성, grow shrink basis순*/
+            flex: 1 1 120px;
+        }
+    </style>
+</head>
+<body>
+    <h2>우리 동네에서 볼 수 있는것들</h2>
+    <ul>
+        <li>강아지</li>
+        <li>길냥이</li>
+        <li>포도당</li>
+        <li>배밭ㅋ</li>
+        <li>맛집ㅋ</li>
+    </ul>
+</body>
+</html>

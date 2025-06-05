@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position z축</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            position: relative;
+        }
+        .div1{background-color: orange; 
+            z-index: 499;
+            overflow: auto;
+        }
+        .div2{background-color: red; bottom: 50px; z-index: 32;}
+        .div3{background-color: purple; bottom: 100px; z-index: 21;}
+        .div4{background-color: green; bottom: 150px; z-index: 11;}
+    </style>
+</head>
+<body>
+    <div class="div1">
+        orangeorangeorangeorangeorange
+        orangeorangeorangeorangeorange
+        orangeorangeorangeorangeorange
+        orangeorangeorangeorangeorange
+        orangeorangeorangeorangeorange
+        orangeorangeorangeorangeorange
+        orangeorangeorangeorangeorange</div>
+    <div class="div2">3</div>
+    <div class="div3">3</div>
+    <div class="div4">4</div>
+</body>
+</html>

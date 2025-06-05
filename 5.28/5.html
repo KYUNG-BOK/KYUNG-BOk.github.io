@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.box{
+            width: 150px;
+            height: 150px;
+            background-color: teal;
+        }
+
+        @media screen and (min-width: 800px){
+            /*조건문*/
+            div.box{
+                background-color: orange;
+            }
+        }
+
+        @media screen and (min-width: 1000px){
+            div.box{
+                background-color: blue;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

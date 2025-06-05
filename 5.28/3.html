@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .list{
+            /*상속되는 친구*/
+            color: initial;
+            font-style: initial;
+            font-weight: initial;
+
+            /*상속 불가*/
+            border: 3px dashed green;
+            padding: 0;
+        }
+
+        .ul{
+            border: inherit;
+        }
+    </style>
+</head>
+<body>
+    <h2>마라톤 대회 참가기록</h2>   
+    <div class="list">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+</body>
+</html>

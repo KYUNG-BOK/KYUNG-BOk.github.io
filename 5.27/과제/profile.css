@@ -1,0 +1,60 @@
+*{
+    font-family: "Dongle", monospace, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+*{
+    text-align: center;
+}
+
+html{
+    background-color: #b5a284;
+}
+
+body{
+    margin: auto; /*너비에서 남는 여백을 동일하게 분배*/
+    width: 640px;
+}
+
+#top{
+    font-size: 48px;
+    font-weight: 500;
+    color: white;
+}
+
+img{
+    width: 350px;
+    height: 350px;
+    border-radius: 1750px;
+}
+
+h2{
+    font-size: 36px;
+    font-weight: 200;
+}
+
+p{
+    font-size: 22px;
+}
+
+li{
+    font-size: 22px;
+}
+
+.fighting{
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 400;
+    
+}
+
+.logo{
+    background-color: black;
+    weight: 640px;
+    height: 90px;
+    box-sizing: border-box;
+    margin: auto;
+    border-radius: 40px;
+
+}
+
