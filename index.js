@@ -1,8 +1,5 @@
-function printName(name) {
-    console.log("이름:", name);
+// 숫자 x,y와 연산자 부호 operator를 입력받아, 연산 부호에 맞는 x와 y의 계산 결과를 반환하는 함수.
+const calculate = function(x,y,operator){
+    //의사코드 (pseudo code) : 코드를 쓰기 전에 인간의 언어로 어떤 식으로 동장해야 하는지 설명
+    //if문
 }
-
-printName("지민", "민수", "수빈");
-// 출력: 이름: 지민
-// 나머지 전달인자(민수, 수빈)는 무시됩니다.
-

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>경복이의 가계부</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        font-family: monospace, Arial, sans-serif;
+        max-width: 1000px;
+        margin: auto;
+        padding: 20px;
+      }
+      h2,
+      h3 {
+        margin-top: 40px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        table-layout: auto;
+      }
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: center;
+        white-space: nowrap;
+        word-break: break-word;
+      }
+      button {
+        margin: 5px 3px;
+        padding: 6px 10px;
+        background-color: #000;
+        color: #fff;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+      input,
+      select {
+        margin: 5px;
+        padding: 8px;
+        font-size: 16px;
+      }
+      .income {
+        color: green;
+        font-weight: bold;
+      }
+      .expense {
+        color: red;
+        font-weight: bold;
+      }
+      .chart-container {
+        width: 400px;
+        margin: 20px auto;
+      }
+      dialog {
+        padding: 20px;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <h2>경복이의 가계부</h2>
+
+    <button onclick="document.getElementById('accountDialog').showModal()">
+      간편 계좌 추가
+    </button>
+    <button type="button" onclick="openAccountPopup()">계좌 관리</button>
+
+    <form id="entryForm">
+      <input type="date" id="date" required />
+      <input
+        type="text"
+        id="category"
+        placeholder="항목 (예: 월급, 식비)"
+        required
+      />
+      <select id="subtype">
+        <option value="수입">수입</option>
+        <option value="고정지출">고정지출</option>
+        <option value="유동지출">유동지출</option>
+        <option value="카드지출">카드지출</option>
+      </select>
+      <input type="number" id="amount" placeholder="금액" required min="0" />
+      <select id="accountSelect" required></select>
+      <button type="submit" id="submitBtn">추가</button>
+    </form>
+
+    <label>월별 필터: <input type="month" id="monthFilter" /></label>
+    <label
+      >계좌 필터:
+      <select id="accountFilter">
+        <option value="">전체</option>
+      </select>
+    </label>
+
+    <label
+      >그래프 색상 선택: <input type="color" id="colorPicker" value="#36a2eb"
+    /></label>
+
+    <table>
+      <thead>
+        <tr>
+          <th>날짜</th>
+          <th>항목</th>
+          <th>분류</th>
+          <th>계좌</th>
+          <th>수입</th>
+          <th>지출</th>
+          <th>잔고</th>
+          <th>비고</th>
+          <th>수정/삭제</th>
+        </tr>
+      </thead>
+      <tbody id="entryTableBody"></tbody>
+    </table>
+
+    <div class="chart-container">
+      <canvas id="expenseChart"></canvas>
+    </div>
+
+    <dialog id="accountDialog">
+      <h3>계좌 관리</h3>
+      <form id="accountForm">
+        <input type="text" id="accountName" placeholder="계좌 이름" required />
+        <input
+          type="number"
+          id="initialBalance"
+          placeholder="초기 잔액"
+          required
+        />
+        <label
+          ><input type="checkbox" id="allowOverdraft" /> 마이너스 통장
+          허용</label
+        >
+        <button type="submit">계좌 추가</button>
+        <button
+          type="button"
+          onclick="document.getElementById('accountDialog').close()"
+        >
+          닫기
+        </button>
+      </form>
+      <ul id="accountList"></ul>
+    </dialog>
+
+    <script>
+      const form = document.getElementById("entryForm");
+      const tableBody = document.getElementById("entryTableBody");
+      const monthFilter = document.getElementById("monthFilter");
+      const accountFilter = document.getElementById("accountFilter");
+      const chartCanvas = document.getElementById("expenseChart");
+      const dateInput = document.getElementById("date");
+      const categoryInput = document.getElementById("category");
+      const amountInput = document.getElementById("amount");
+      const subtypeInput = document.getElementById("subtype");
+      const accountSelect = document.getElementById("accountSelect");
+      const submitBtn = document.getElementById("submitBtn");
+      const colorPicker = document.getElementById("colorPicker");
+
+      const accountForm = document.getElementById("accountForm");
+      const accountList = document.getElementById("accountList");
+
+      let entries = JSON.parse(localStorage.getItem("entries") || "[]");
+      let accounts = JSON.parse(localStorage.getItem("accounts") || "[]");
+      let lastDate = "";
+      let editIndex = -1;
+
+      function saveEntries() {
+        localStorage.setItem("entries", JSON.stringify(entries));
+      }
+
+      function saveAccounts() {
+        localStorage.setItem("accounts", JSON.stringify(accounts));
+      }
+
+      function loadAccounts() {
+        accountSelect.innerHTML = "";
+        accountFilter.innerHTML = '<option value="">전체</option>';
+        accounts.forEach((acc) => {
+          const option = document.createElement("option");
+          option.value = acc.name;
+          option.textContent = acc.name;
+          accountSelect.appendChild(option);
+
+          const filterOption = document.createElement("option");
+          filterOption.value = acc.name;
+          filterOption.textContent = acc.name;
+          accountFilter.appendChild(filterOption);
+        });
+
+        accountList.innerHTML = "";
+        accounts.forEach((acc) => {
+          const li = document.createElement("li");
+          li.textContent = `${
+            acc.name
+          } - 잔액: ${acc.balance.toLocaleString()}원 ${
+            acc.overdraft ? "(마이너스 허용)" : ""
+          }`;
+          accountList.appendChild(li);
+        });
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const today = new Date().toISOString().split("T")[0];
+        dateInput.value = today;
+        lastDate = today;
+        loadAccounts();
+        render();
+      });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const date = dateInput.value || lastDate;
+        const category = categoryInput.value.trim();
+        const amount = parseFloat(amountInput.value);
+        const subtype = subtypeInput.value;
+        const account = accountSelect.value;
+
+        if (!category || isNaN(amount) || !account) {
+          alert("모든 항목을 입력해 주세요.");
+          return;
+        }
+
+        const accountObj = accounts.find((a) => a.name === account);
+        if (!accountObj) {
+          alert("계좌를 찾을 수 없습니다.");
+          return;
+        }
+
+        if (editIndex === -1) {
+          // 추가
+          if (subtype === "수입") {
+            accountObj.balance += amount;
+          } else {
+            if (!accountObj.overdraft && accountObj.balance < amount) {
+              alert("잔액이 부족합니다.");
+              return;
+            }
+            accountObj.balance -= amount;
+          }
+          entries.push({ date, category, amount, subtype, account });
+        } else {
+          // 수정
+          const old = entries[editIndex];
+          const oldAccount = accounts.find((a) => a.name === old.account);
+          if (old.subtype === "수입") oldAccount.balance -= old.amount;
+          else oldAccount.balance += old.amount;
+
+          if (subtype === "수입") {
+            accountObj.balance += amount;
+          } else {
+            if (!accountObj.overdraft && accountObj.balance < amount) {
+              alert("잔액이 부족합니다.");
+              return;
+            }
+            accountObj.balance -= amount;
+          }
+
+          entries[editIndex] = { date, category, amount, subtype, account };
+          editIndex = -1;
+          submitBtn.textContent = "추가";
+        }
+
+        saveAccounts();
+        saveEntries();
+        loadAccounts();
+        form.reset();
+        dateInput.value = lastDate;
+        render();
+      });
+
+      function editEntry(index) {
+        const entry = entries[index];
+        dateInput.value = entry.date;
+        categoryInput.value = entry.category;
+        amountInput.value = entry.amount;
+        subtypeInput.value = entry.subtype;
+        accountSelect.value = entry.account;
+        submitBtn.textContent = "수정 완료";
+        editIndex = index;
+      }
+
+      monthFilter.addEventListener("input", render);
+      accountFilter.addEventListener("input", render);
+
+      accountForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("accountName").value.trim();
+        const balance = parseFloat(
+          document.getElementById("initialBalance").value
+        );
+        const overdraft = document.getElementById("allowOverdraft").checked;
+        if (!name || isNaN(balance))
+          return alert("계좌명과 초기 잔액을 입력해주세요.");
+        accounts.push({ name, balance, initialBalance: balance, overdraft });
+        saveAccounts();
+        loadAccounts();
+        accountForm.reset();
+      });
+
+      function render() {
+        const selectedMonth = monthFilter.value;
+        const selectedAccount = accountFilter.value;
+        tableBody.innerHTML = "";
+
+        // 1. 날짜순 정렬
+        const sortedEntries = [...entries].sort(
+          (a, b) => new Date(a.date) - new Date(b.date)
+        );
+
+        // 2. 날짜순으로 각 계좌별 누적 잔고 계산
+        const runningBalances = {};
+        accounts.forEach((acc) => {
+          runningBalances[acc.name] = acc.initialBalance;
+        });
+
+        const balanceEntries = sortedEntries.map((entry) => {
+          const { subtype, amount, account } = entry;
+          if (subtype === "수입") {
+            runningBalances[account] += amount;
+          } else {
+            runningBalances[account] -= amount;
+          }
+          return {
+            ...entry,
+            balance: runningBalances[account],
+          };
+        });
+
+        // 3. 필터 적용 후 렌더링
+        balanceEntries.forEach((entry, index) => {
+          const { date, category, amount, subtype, account, balance } = entry;
+
+          const matchMonth = selectedMonth
+            ? date.startsWith(selectedMonth)
+            : true;
+          const matchAccount = selectedAccount
+            ? account === selectedAccount
+            : true;
+
+          if (matchMonth && matchAccount) {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+            <td>${date}</td>
+            <td>${category}</td>
+            <td>${subtype}</td>
+            <td>${account}</td>
+            <td class="income">${
+              subtype === "수입" ? amount.toLocaleString() : "-"
+            }</td>
+            <td class="expense">${
+              subtype !== "수입" ? amount.toLocaleString() : "-"
+            }</td>
+            <td>${balance.toLocaleString()}</td>
+            <td></td>
+            <td>
+              <button type="button" onclick="editEntry(${index})">수정</button>
+              <button type="button" onclick="deleteEntry(${index})">삭제</button>
+            </td>
+          `;
+            tableBody.appendChild(tr);
+          }
+        });
+
+        updateChart();
+      }
+
+      function deleteEntry(index) {
+        const entry = entries[index];
+        const accountObj = accounts.find((a) => a.name === entry.account);
+        if (entry.subtype === "수입") {
+          accountObj.balance -= entry.amount;
+        } else {
+          accountObj.balance += entry.amount;
+        }
+        entries.splice(index, 1);
+        saveAccounts();
+        saveEntries();
+        loadAccounts();
+        render();
+      }
+
+      // 그래프 업데이트
+      let expenseChart;
+      function updateChart() {
+        const selectedMonth = monthFilter.value;
+        const selectedAccount = accountFilter.value;
+        const color = colorPicker.value;
+
+        // 지출 내역만 필터
+        const filteredExpenses = entries.filter((e) => {
+          const dateMatch = selectedMonth
+            ? e.date.startsWith(selectedMonth)
+            : true;
+          const accountMatch = selectedAccount
+            ? e.account === selectedAccount
+            : true;
+          return e.subtype !== "수입" && dateMatch && accountMatch;
+        });
+
+        // 분류별 지출 합계 집계
+        const expenseByCategory = {};
+        filteredExpenses.forEach((e) => {
+          expenseByCategory[e.category] =
+            (expenseByCategory[e.category] || 0) + e.amount;
+        });
+
+        const labels = Object.keys(expenseByCategory);
+        const data = Object.values(expenseByCategory);
+
+        if (expenseChart) expenseChart.destroy();
+
+        expenseChart = new Chart(chartCanvas, {
+          type: "pie",
+          data: {
+            labels,
+            datasets: [
+              {
+                data,
+                backgroundColor: labels.map(() => color),
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { position: "bottom" },
+              tooltip: { enabled: true },
+            },
+          },
+        });
+      }
+
+      function openAccountPopup() {
+        const popup = window.open(
+          "account.html",
+          "accountPopup",
+          "width=500,height=600,top=100,left=100,toolbar=no,menubar=no,scrollbars=no,resizable=no"
+        );
+        if (!popup || popup.closed || typeof popup.closed === "undefined") {
+          alert("팝업이 차단되었거나 열리지 않았습니다.");
+        }
+      }
+    </script>
+  </body>
+</html>
