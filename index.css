@@ -1,0 +1,169 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+* {
+  font-family: "Dongle", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #ffffff;
+  font-size: 1.2em;
+}
+
+.container {
+  width: 600px;
+  height: 850px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid black; /*테두리 추가*/
+}
+
+.header {
+  background-color: black;
+  color: white;
+  padding: 35px;
+  text-align: center;
+}
+
+.main {
+  flex: 1;
+  padding: 10px;
+}
+
+#main11 {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  font-size: 1em;
+}
+.link-card {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.link-card a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.link-card:hover {
+  background-color: #040404;
+}
+.link-card:hover a {
+  color: #ffffff;
+  font-size: 1.5em;
+}
+.sec1,
+.sec2,
+.sec3 {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 8px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.sec1 .link-card:last-child,
+.sec2 .link-card:last-child,
+.sec3 .link-card:last-child {
+  margin-bottom: 0;
+}
+.main {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto; /* ← 콘텐츠가 많아지면 넘쳐버리는 것을 방지.*/
+}
+fieldset {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 10px 15px 15px 15px;
+  margin-bottom: 15px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+legend {
+  font-weight: bold;
+  padding: 0 10px;
+  font-size: 1.2em;
+  color: #333;
+}
+.page-wrapper {
+  display: flex;
+  height: 100vh;
+  gap: 20px; /* 좌우 사이 공간 */
+  padding: 20px;
+  box-sizing: border-box;
+  justify-content: flex-left; /* 필요 시 조정 */
+  align-items: center; /* 가운데 정렬 */
+}
+
+.sidebar {
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* 스크롤 필요 시 */
+}
+
+.sidebar h2 {
+  margin-bottom: 15px;
+}
+
+.sidebar table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sidebar th,
+.sidebar td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.sidebar a {
+  color: #333;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+.member {
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+.study {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 1px;
+}

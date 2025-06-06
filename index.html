@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
@@ -9,210 +9,54 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Dongle&display=swap"
-        rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Dongle&display=swap"
+      rel="stylesheet"
     />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        }
-      * {
-        font-family: "Dongle", sans-serif;
-        font-weight: 400;
-        font-style: normal;
-        }
-
-        body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: #ffffff;
-        font-size: 1.2em;
-        } 
-
-        .container {
-        width: 600px;
-        height: 850px;
-        display: flex;
-        flex-direction: column;
-        border-radius: 15px;
-        overflow: hidden;
-        background-color: #ffffff;
-        border: 1px solid black; /*테두리 추가*/
-        }
-
-        .header {
-        background-color: black;
-        color: white;
-        padding: 35px;
-        text-align: center;
-        }
-
-        .main {
-        flex: 1;
-        padding: 10px;
-        }
-
-        #main11 {
-        flex: 1;
-        padding: 10px;
-        border: none;
-        font-size: 1em;
-        }
-        .link-card {
-        background-color: #f0f0f0;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        padding: 15px;
-        margin-bottom: 10px;
-        text-align: center;
-        transition: background-color 0.3s;
-        }
-
-        .link-card a {
-        text-decoration: none;
-        color: #333;
-        font-size: 1.2em;
-        }
-
-        .link-card:hover {
-        background-color: #040404;
-        }
-        .link-card:hover a {
-        color: #ffffff;
-        font-size: 1.5em;
-        }
-        .sec1,
-        .sec2,
-        .sec3 {
-        border: 2px solid #ccc;
-        border-radius: 5px;
-        padding: 5px;
-        margin-bottom: 8px;
-        background-color: #fafafa;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-
-        .sec1 .link-card:last-child,
-        .sec2 .link-card:last-child,
-        .sec3 .link-card:last-child {
-        margin-bottom: 0;
-        }
-        .main {
-        flex: 1;
-        padding: 10px;
-        overflow-y: auto; /* ← 콘텐츠가 많아지면 넘쳐버리는 것을 방지.*/
-        }
-        fieldset {
-        border: 2px solid #ccc;
-        border-radius: 5px;
-        padding: 10px 15px 15px 15px;
-        margin-bottom: 15px;
-        background-color: #fafafa;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-
-        legend {
-        font-weight: bold;
-        padding: 0 10px;
-        font-size: 1.2em;
-        color: #333;
-        }
-        .page-wrapper {
-        display: flex;
-        height: 100vh;
-        gap: 20px; /* 좌우 사이 공간 */
-        padding: 20px;
-        box-sizing: border-box;
-        background: #fff;
-        justify-content: flex-left; /* 필요 시 조정 */
-        align-items: center; /* 가운데 정렬 */
-        }
-
-    .sidebar {
-        width: 250px;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        padding: 15px;
-        background-color: #fafafa;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        overflow-y: auto; /* 스크롤 필요 시 */
-    }
-
-    .sidebar h2 {
-        margin-bottom: 15px;
-    }
-
-    .sidebar table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .sidebar th, .sidebar td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: center;
-    }
-
-    .sidebar a {
-        color: #333;
-        text-decoration: none;
-        font-size: 20px;
-    }
-
-    .sidebar a:hover {
-        text-decoration: underline;
-    }
-
-    .member{
-        text-align: center;
-        font-size: 1.3em;
-        font-weight: bold;
-        margin-bottom: 10px;
-        background-color: black;
-        color: white;
-        padding: 10px;
-    }
-    .study{
-        text-align: center;
-        font-size: 1.5em;
-        font-weight: bold;
-        margin-bottom: 1px;
-    }
-
-
-    </style>
+    <link href="index.css" rel="stylesheet">
   </head>
-    <body>
+  <body>
     <div class="page-wrapper">
-    <aside class="sidebar">
-      <div class="member">🧑‍🎓 Study Group Members</div>
-      <table>
-        <thead>
-          <tr><th>이름</th><th>github링크</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>⭐&nbsp;&nbsp;하흥주</td>
-            <td><a href="https://thepott.github.io" target="_blank">
-                🔗GitHub로 이동</a></td>
-          </tr>
-          <tr>
-            <td>서단비</td>
-            <td><a href="https://danbi-seo.github.io/dani-seo.github.io/" target="_blank">
-                🔗GitHub로 이동</a></td>
-          </tr>
-           <tr>
-            <td>장병권</td>
-            <td><a href="https://github.com/" target="_blank">
-                🔗GitHub로 이동</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </aside>
+      <aside class="sidebar">
+        <div class="member">🧑‍🎓 Study Group Members</div>
+        <table>
+          <thead>
+            <tr>
+              <th>이름</th>
+              <th>github링크</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>⭐&nbsp;하흥주님</td>
+              <td>
+                <a href="https://thepott.github.io" target="_blank">
+                  🔗GitHub로 이동</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>서단비님</td>
+              <td>
+                <a
+                  href="https://danbi-seo.github.io/dani-seo.github.io/"
+                  target="_blank"
+                >
+                  🔗GitHub로 이동</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>장병권님</td>
+              <td>
+                <a href="https://github.com/" target="_blank">
+                  🔗GitHub로 이동</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </aside>
+
 
     <div class="container">
       <header class="header">
@@ -223,49 +67,37 @@
         <fieldset class="sec1">
           <legend class="study">1일차 실습 및 과제 결과물</legend>
           <div class="link-card">
-            <a href="" target="_blank"
-              >가계부로 가기?! 연습용이에유.</a
-            >
+            <a href="" target="_blank">가계부로 가기?! 연습용이에유.</a>
           </div>
           <div class="link-card">
             <a href="" target="_blank">프로필 만들기</a>
           </div>
           <div class="link-card">
-            <a href="" target="_blank"
-              >a</a
-            >
+            <a href="" target="_blank">a</a>
           </div>
         </fieldset>
         <fieldset class="sec2">
           <legend class="study">2일차 실습 및 과제 결과물</legend>
           <div class="link-card">
-            <a href="" target="_blank"
-              >b</a
-            >
+            <a href="" target="_blank">b</a>
           </div>
           <div class="link-card">
             <a href="" target="_blank">c</a>
           </div>
           <div class="link-card">
-            <a href="" target="_blank"
-              >d</a
-            >
+            <a href="" target="_blank">d</a>
           </div>
         </fieldset>
         <fieldset class="sec3">
           <legend class="study">3일차 실습 및 과제 결과물</legend>
           <div class="link-card">
-            <a href="" target="_blank"
-              >e</a
-            >
+            <a href="" target="_blank">e</a>
           </div>
           <div class="link-card">
             <a href="" target="_blank">f</a>
           </div>
           <div class="link-card">
-            <a href="" target="_blank"
-              >g</a
-            >
+            <a href="" target="_blank">g</a>
           </div>
         </fieldset>
       </div>
