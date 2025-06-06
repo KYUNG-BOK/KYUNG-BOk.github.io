@@ -29,23 +29,24 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background-color: #b9985f;
+        background-color: #ffffff;
       }
 
       .container {
-        width: 400px;
-        height: 600px;
+        width: 600px;
+        height: 800px;
         display: flex;
         flex-direction: column;
         border-radius: 15px;
         overflow: hidden;
         background-color: #ffffff;
+        border: 1px solid black; /*테두리 추가*/
       }
 
       .header {
         background-color: black;
         color: white;
-        padding: 10px;
+        padding: 20px;
         text-align: center;
       }
 
@@ -58,18 +59,194 @@
         flex: 1;
         padding: 10px;
         border: none;
-        border-right: 1px solid #dedbdb;
         font-size: 1em;
       }
+      .link-card {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 10px;
+        text-align: center;
+        transition: background-color 0.3s;
+      }
+
+      .link-card a {
+        text-decoration: none;
+        color: #333;
+        font-size: 1.2em;
+      }
+
+      .link-card:hover {
+        background-color: #040404;
+      }
+      .link-card:hover a {
+        color: #ffffff;
+        font-size: 1.5em;
+      }
+      .sec1,
+      .sec2,
+      .sec3 {
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        padding: 5px;
+        margin-bottom: 8px;
+        background-color: #fafafa;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      .sec1 .link-card:last-child,
+      .sec2 .link-card:last-child,
+      .sec3 .link-card:last-child {
+        margin-bottom: 0;
+      }
+      .main {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto; /* ← 콘텐츠가 많아지면 넘쳐버리는 것을 방지.*/
+      }
+      fieldset {
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        padding: 10px 15px 15px 15px;
+        margin-bottom: 15px;
+        background-color: #fafafa;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      legend {
+        font-weight: bold;
+        padding: 0 10px;
+        font-size: 1.2em;
+        color: #333;
+      }
+      .page-wrapper {
+  display: flex;
+  height: 100vh;
+  gap: 20px; /* 좌우 사이 공간 */
+  padding: 20px;
+  box-sizing: border-box;
+  background: #fff;
+  justify-content: center; /* 필요 시 조정 */
+  align-items: flex-start; /* 위쪽 정렬 */
+}
+
+.sidebar {
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow-y: auto; /* 스크롤 필요 시 */
+}
+
+.sidebar h2 {
+  margin-bottom: 15px;
+}
+
+.sidebar table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sidebar th, .sidebar td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.sidebar a {
+  color: #333;
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
     </style>
   </head>
   <body>
+    <div class="page-wrapper">
+    <aside class="sidebar">
+      <h2>같이 공부하는 분들</h2>
+      <table>
+        <thead>
+          <tr><th>이름</th><th>링크</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>하흥주</td>
+            <td><a href="https://github.com/cheolsu" target="_blank">GitHub</a></td>
+          </tr>
+          <tr>
+            <td>서단비</td>
+            <td><a href="https://github.com/younghee" target="_blank">GitHub</a></td>
+          </tr>
+           <tr>
+            <td>장병권</td>
+            <td><a href="https://github.com/younghee" target="_blank">GitHub</a></td>
+          </tr>
+          <!-- 더 추가 -->
+        </tbody>
+      </table>
+    </aside>
+
     <div class="container">
       <header class="header">
-        <h1>경복이의 깃헙</h1>
+        <h1>복이의 "github"에 오신것을 환영해요!!</h1>
       </header>
 
-      <div class="main" id="main11"></div>
+      <div class="main" id="main11">
+        <fieldset class="sec1">
+          <legend>1일차</legend>
+          <div class="link-card">
+            <a href="https://kyung-bok.github.io/5/budget" target="_blank"
+              >🔗 가계부로 가기?! 연습용이에유.</a
+            >
+          </div>
+          <div class="link-card">
+            <a href="https://yourblog.com" target="_blank">내 블로그</a>
+          </div>
+          <div class="link-card">
+            <a href="https://notion.so/yourpage" target="_blank"
+              >📚 노션 정리</a
+            >
+          </div>
+        </fieldset>
+        <fieldset class="sec2">
+          <legend>2일차</legend>
+          <div class="link-card">
+            <a href="https://kyung-bok.github.io/5/budget" target="_blank"
+              >🔗 가계부로 가기</a
+            >
+          </div>
+          <div class="link-card">
+            <a href="https://yourblog.com" target="_blank">✍ 블로그</a>
+          </div>
+          <div class="link-card">
+            <a href="https://notion.so/yourpage" target="_blank"
+              >📚 노션 정리</a
+            >
+          </div>
+        </fieldset>
+        <fieldset class="sec3">
+          <legend>3일차</legend>
+          <div class="link-card">
+            <a href="https://kyung-bok.github.io/5/budget" target="_blank"
+              >🔗 가계부로 가기</a
+            >
+          </div>
+          <div class="link-card">
+            <a href="https://yourblog.com" target="_blank">✍ 블로그</a>
+          </div>
+          <div class="link-card">
+            <a href="https://notion.so/yourpage" target="_blank"
+              >📚 노션 정리</a
+            >
+          </div>
+        </fieldset>
+      </div>
     </div>
   </body>
 </html>
