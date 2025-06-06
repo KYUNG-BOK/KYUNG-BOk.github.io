@@ -2,6 +2,153 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Dongle", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #ffffff;
+  font-size: 1.2em;
+}
+
+.page-wrapper {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  align-items: flex-start;
+}
+
+.sidebar {
+  width: 250px;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: white;
+  overflow-y: auto;
+}
+
+.sidebar a {
+  color: #333;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+.member {
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+
+.container {
+  width: 600px;
+  height: 750px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid black;
+}
+
+.header {
+  background-color: black;
+  color: white;
+  padding: 35px;
+  text-align: center;
+}
+
+.main {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.link-card {
+  background-color: #d8d6d6;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.link-card a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.link-card:hover {
+  background-color: #040404;
+}
+
+.link-card:hover a {
+  color: #ffffff;
+}
+
+.sec1, .sec2, .sec3 {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 8px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.study {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 1px;
+}
+
+/* 📱 미디어쿼리 */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+  }
+
+  .page-wrapper {
+    flex-direction: column;
+    gap: 10px;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .container {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 * {
   font-family: "Dongle", sans-serif;
@@ -178,13 +325,12 @@ legend {
   .page-wrapper {
     flex-direction: column;
     align-items: stretch;
-    gap: 10px;
-    padding: 10px;
     height: auto;
   }
 
   .sidebar {
     width: 100%;
+    order: 0; /* ← 이걸로 맨 위에 배치 */
   }
 
   .container {
