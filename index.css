@@ -54,10 +54,14 @@ body {
   padding: 15px;
   margin-bottom: 10px;
   text-align: center;
+  cursor: pointer; /* 마우스 포인터 변경 */
   transition: background-color 0.3s;
 }
 
 .link-card a {
+  display: block;
+  width: 100%;
+  height: 100%;
   text-decoration: none;
   color: #333;
   font-size: 1.2em;
