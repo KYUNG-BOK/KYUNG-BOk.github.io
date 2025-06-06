@@ -1,2 +1,80 @@
-<p>hello worㅇld!!!</p>
-<a href="./5/budget">aa</a>
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>경복이의 깃헙</title>
+    <link href="chat.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dongle&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      * {
+        font-family: "Dongle", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #b9985f;
+      }
+
+      .chat_container {
+        width: 400px;
+        height: 600px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 15px;
+        overflow: hidden;
+        background-color: #ffffff;
+      }
+
+      .header {
+        background-color: black;
+        color: white;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .chat_message {
+        flex: 1;
+        padding: 10px;
+      }
+
+      .chat_input {
+        display: flex;
+        border-top: 1px solid #dedbdb;
+      }
+
+      #message {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-right: 1px solid #dedbdb;
+        font-size: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>경복이의 깃헙</h1>
+      </header>
+
+      <div class="main" id="main11"></div>
+    </div>
+  </body>
+</html>
