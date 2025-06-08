@@ -16,8 +16,8 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function openPopup(url) {
-    window.open(url, 'popupWindow', 'width=600,height=400,scrollbars=yes,resizable=yes');
+  function openPopup() {
+    window.open('./눈사람만들기/index.html', 'popupWindow', 'width=600,height=400,scrollbars=yes,resizable=yes');
   }
 
   moveSidebar(); // 초기 실행
