@@ -196,4 +196,10 @@ legend {
     width: 100%;
     height: auto;
   }
+
+  .header {
+    height: auto;         /* 고정 높이 제거 */
+    padding: 20px;        /* 패딩은 적절히 조정 */
+    text-align: center;
+  }
 }
