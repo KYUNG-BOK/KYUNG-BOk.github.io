@@ -16,6 +16,10 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function openPopup(url) {
+    window.open(url, 'popupWindow', 'width=600,height=400,scrollbars=yes,resizable=yes');
+  }
+
   moveSidebar(); // 초기 실행
   window.addEventListener("resize", moveSidebar); // 반응형 대응
 });
