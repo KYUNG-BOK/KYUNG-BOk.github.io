@@ -19,3 +19,18 @@ function calculateResult() {        // = 눌렀을때.
     alert("계산을 할 수 없다네~~");
     }       // 잘못된 수식일때 출력
 }
+
+function backspace(){               // <- 눌렀을때
+    const display = document.getElementById('display');
+    display.value = display.value.slice(0, -1); // 문자열 끝에 있는 한 글자를 잘라내기
+}
+
+function appendValue(value) {       // % 눌렀을때.
+    const display = document.getElementById('display');
+
+    if (value === '%') {
+    display.value += '/100'; // 퍼센트를 실제 수식으로 변환
+    } else {
+    display.value += value;
+    }
+}
