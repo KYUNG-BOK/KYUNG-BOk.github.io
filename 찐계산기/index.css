@@ -1,3 +1,9 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background: #e0e0e0;
   display: flex;
@@ -11,14 +17,14 @@ body {
   background: #3c3b3b;
   border-radius: 20px;
   padding: 20px;
-  width: 290px;
+  width: 360px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
 /* 입력값, 결과값이 출력되는 부분*/
 .display {
-  width: 95%;
-  height: 60px;
+  width: 100%;
+  height: 70px;
   font-size: 2em;
   text-align: right;
   margin-bottom: 10px;
@@ -67,7 +73,7 @@ button.zero {
 }
 
 /* 반응형 추가 */
-@media (max-width: 480px) {
+@media (max-width: 430px) {
   .calculator {
     width: 90%;
     padding: 15px;
