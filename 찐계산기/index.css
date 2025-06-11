@@ -44,6 +44,8 @@ button {
   background: #505050;
   color: white;
   transition: 0.2s;
+  cursor: pointer;
+
 }
 
 button:active {
