@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="index.css" rel="stylesheet">
+    <title>계산기여유</title>
+    
+</head>
+<body>
+    <!--계산기 시작 몸통 시작-->
+    <div class="calculator">
+        <!--디스플레이가 출력되는 부분이여유!-->
+        <input type="text" id="display" class="display" readonly />
+    <!--버튼을 누르는 부분-->
+    <div class="buttons">
+        <button onclick="clearDisplay()" class="gray">AC</button>
+        <button onclick="backspace()" class="gray">←</button>
+        <button onclick="appendValue('%')" class="gray">%</button>
+        <button onclick="appendValue('/')" class="orange">÷</button>
+
+        <button onclick="appendValue('7')">7</button>
+        <button onclick="appendValue('8')">8</button>
+        <button onclick="appendValue('9')">9</button>
+        <button onclick="appendValue('*')" class="orange">×</button>
+
+        <button onclick="appendValue('4')">4</button>
+        <button onclick="appendValue('5')">5</button>
+        <button onclick="appendValue('6')">6</button>
+        <button onclick="appendValue('-')" class="orange">−</button>
+
+        <button onclick="appendValue('1')">1</button>
+        <button onclick="appendValue('2')">2</button>
+        <button onclick="appendValue('3')">3</button>
+        <button onclick="appendValue('+')" class="orange">+</button>
+
+        <button onclick="appendValue('0')" class="zero">0</button>
+        <button onclick="appendValue('.')">.</button>
+        <button onclick="calculateResult()" class="orange">=</button>
+    </div>
+</div>
+<!--js 연결하느부분-->
+<script src="index.js"></script>    
+</body>
+</html>

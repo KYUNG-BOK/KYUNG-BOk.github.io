@@ -48,7 +48,7 @@ button:hover {
   background-color: #ddd;
 }
 
-/* 📱 모바일 전용 반응형 스타일 */
+/* 모바일 전용 반응형 스타일 */
 @media (max-width: 480px) {
   .calculator {
     width: 95vw;
