@@ -1,4 +1,8 @@
-/* 기본 스타일 */
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -7,6 +11,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow: hidden;
 }
 
 .calculator {
@@ -16,6 +21,7 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   width: 300px;
   max-width: 90vw;
+  overflow: hidden;
 }
 
 #display {
