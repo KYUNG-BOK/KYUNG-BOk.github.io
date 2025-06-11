@@ -11,6 +11,7 @@ body {
   align-items: center;
   height: 100vh;
   font-family: monospace, BlinkMacSystemFont, sans-serif;
+
 }
 
 .calculator {
@@ -81,11 +82,11 @@ button.zero {
 
   .display {
     font-size: 1.5em;
-    height: 50px;
+    height: 80px;
   }
 
   button {
-    height: 60px;
+    height: 75px;
     font-size: 1.5em;
   }
 }
