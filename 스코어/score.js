@@ -7,7 +7,7 @@ for (let i = 1; i <= 50; i++) {
   select.appendChild(option);
 }
 
-// 2. 점수판 기능
+// 2. 점수판 기능 생성하기
 let scoreA = 0;
 let scoreB = 0;
 let gameOver = false;
@@ -37,10 +37,11 @@ function declareWinner(teamName) {
   document.getElementById('btnA').disabled = true;
   document.getElementById('btnB').disabled = true;
 
+  //화면에 폭죽효과 나타내기
   confetti({
-    particleCount: 200,
-    spread: 360,
-    origin: { x: 0.5, y: 0.5 },
+    particleCount: 200,   // 터지는 조각의 개수 설정
+    spread: 360,          // 조각이 퍼지는 각도
+    origin: { x: 0.5, y: 0.5 },   // 화면의 정중앙에서 폭죽이 터질거에유~~
     zIndex: 999
   });
 }
@@ -57,7 +58,7 @@ function resetScores() {
   document.getElementById('btnB').disabled = false;
 }
 
-// 3. 버튼에 이벤트 연결
-document.getElementById('btnA').addEventListener('click', () => addScore('A'));
-document.getElementById('btnB').addEventListener('click', () => addScore('B'));
-document.getElementById('resetBtn').addEventListener('click', resetScores);
+// 3. 버튼 클릭 시 이벤트 연결
+document.getElementById('btnA').addEventListener('click', () => addScore('A'));   // 누르면 a팀 1점 증가
+document.getElementById('btnB').addEventListener('click', () => addScore('B'));   // 누르면 b팀 1점 증가
+document.getElementById('resetBtn').addEventListener('click', resetScores);   // 점수 리셋 버튼 클릭시 리셋됨
