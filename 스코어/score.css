@@ -1,0 +1,130 @@
+*{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: monospace, 'Arial', sans-serif;
+      background: #bbb6b6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      position: relative;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .controls {
+      margin-bottom: 20px;
+    }
+
+    .scoreboard {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+
+    .team {
+      text-align: center;
+    }
+
+    .team h2 {
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+
+    .score {
+      font-size: 48px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-a {
+      background-color: #3498db;
+      color: white;
+    }
+
+    .btn-a:hover {
+      background-color: #2980b9;
+    }
+
+    .btn-b {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    .btn-b:hover {
+      background-color: #c0392b;
+    }
+
+    .btn-reset {
+      background-color: #555;
+      color: white;
+      margin-top: 20px;
+    }
+
+    .btn-reset:hover {
+      background-color: #333;
+    }
+
+    .winner-message {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 48px;
+      font-weight: bold;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px 60px;
+      border-radius: 20px;
+      color: #222;
+      display: none;
+      z-index: 100;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 600px) {
+      .scoreboard {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .score {
+        font-size: 36px;
+      }
+
+      .winner-message {
+        font-size: 36px;
+        padding: 20px 40px;
+      }
+    }
+
+    .score{
+      font-size: 100px;
+    }
+
+    .team_name{
+      font-size: 60px;
+      font-weight: 900;
+    }
+
+    .score_board{
+      font-size: 100px;
+    }

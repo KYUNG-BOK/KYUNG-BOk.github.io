@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>점수판이여유</title>
+  <link href="score.css" rel="stylesheet">
+</head>
+<body>
+
+  <p class="score_board">점수판 만들기여유</p>
+
+  <div class="controls">
+    <label for="winningScore">우승 점수 설정: </label>
+    <select id="winningScore">
+    </select>
+  </div>
+
+  <div class="scoreboard">
+    <div class="team" id="teamA">
+      <p class="team_name">A팀</p>
+      <div class="score" id="scoreA">0</div>
+      <button class="btn btn-a" id="btnA" onclick="addScore('A')">득점 +1</button>
+    </div>
+
+    <div class="team" id="teamB">
+      <p class="team_name">B팀</p>
+      <div class="score" id="scoreB">0</div>
+      <button class="btn btn-b" id="btnB" onclick="addScore('B')">득점 +1</button>
+    </div>
+  </div>
+
+  <button class="btn btn-reset" onclick="resetScores()">점수 리셋</button>
+
+  <div class="winner-message" id="winnerMessage"></div>
+
+  <!-- 폭죽스크립트 -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!--score.js 연결-->
+  <script src="score.js"></script>
+</body>
+</html>
