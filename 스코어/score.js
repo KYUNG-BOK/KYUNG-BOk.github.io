@@ -31,7 +31,7 @@ function addScore(team) {
 function declareWinner(teamName) {
   gameOver = true;
   const message = document.getElementById('winnerMessage');
-  message.innerText = `${teamName} Win!`;
+  message.innerText = `${teamName} 이겼슈~!`;
   message.style.display = 'block';
 
   document.getElementById('btnA').disabled = true;

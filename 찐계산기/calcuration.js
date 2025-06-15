@@ -1,8 +1,7 @@
 /* 6/12 ~ 6/13 학습 부분 복습 및 추가학습, 
-    keydown 추가하여 키보드입력부분 감지하여,
+    event.preventDefault(),
+    keydown 추가 키보드입력부분 감지하여,
     디스플레이에 출력되게 했슴당 */
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', handleKeyPress);
@@ -38,7 +37,7 @@ function backspace() {
 
 // 키다운 이벤트 입력부분
 function handleKeyPress(event) {
-    const key = event.key;
+    const key = event.key;  // 유저가 직접 누른 값을 변수 'key'에 저장
 
     // 숫자 및 연산자 입력
     if (/[0-9+\-*/().]/.test(key)) {
@@ -50,7 +49,8 @@ function handleKeyPress(event) {
     }
     // 엔터(Enter)는 계산 실행
     else if (key === 'Enter') {
-        event.preventDefault(); // 폼 제출 방지
+        // form눌렀을때 브라우저가 새로고침되는 것을 막아줌, 6/12 학습
+        event.preventDefault(); 
         calculateResult();
     }
     // 백스페이스는 한 글자 삭제
