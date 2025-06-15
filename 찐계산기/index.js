@@ -1,36 +1,64 @@
+/* 6/12 ~ 6/13 학습 부분 복습 및 추가학습, 
+    keydown 추가하여 키보드입력부분 감지하여,
+    디스플레이에 출력되게 했슴당 */
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('keydown', handleKeyPress);
+});
+
 function appendValue(value) {
-    document.getElementById('display').value += value;
-}       //html에서 Id가 디스플레이인 요소 찾아서 그 요소의 현재 입력값 뒤에 입력된 값을 덧붙임
-        //숫자나, 연산자 버튼 클릭했을때, 내용들을 화면에 출력해줌.
-
-function clearDisplay() {               //ac 눌렀을때
-    document.getElementById('display').value = '';  
-}
-        //id가 디스플레이인 요소의 값을 빈 문자열로 만듬
-        //초기화(클리어디스플레이버튼 호출)
-
-function calculateResult() {        // = 눌렀을때.
-    try {
-    const result = eval(document.getElementById('display').value);  
-    //id가 디스플레이 요소에 입력된 문자열 eval()함수로 실행 계산
-    document.getElementById('display').value = result;
-    //결과를 다시 디스플레이에 출력
-    } catch (error) {
-    alert("계산을 할 수 없다네~~");
-    }       // 잘못된 수식일때 출력
-}
-
-function backspace(){               // <- 눌렀을때
-    const display = document.getElementById('display');
-    display.value = display.value.slice(0, -1); // 문자열 끝에 있는 한 글자를 잘라내기
-}
-
-function appendValue(value) {       // % 눌렀을때.
     const display = document.getElementById('display');
 
     if (value === '%') {
-    display.value += '/100'; // 퍼센트를 실제 수식으로 변환
+        display.value += '/100'; // 퍼센트를 실제 수식으로 변환
     } else {
-    display.value += value;
+        display.value += value;
+    }
+}
+
+function clearDisplay() {
+    document.getElementById('display').value = '';
+}
+
+function calculateResult() {
+    try {
+        const result = eval(document.getElementById('display').value);
+        document.getElementById('display').value = result;
+    } catch (error) {
+        alert("계산을 할 수 없다네~~");
+    }
+}
+
+function backspace() {
+    const display = document.getElementById('display');
+    display.value = display.value.slice(0, -1);
+}
+
+// 키다운 이벤트 입력부분
+function handleKeyPress(event) {
+    const key = event.key;
+
+    // 숫자 및 연산자 입력
+    if (/[0-9+\-*/().]/.test(key)) {
+        appendValue(key);
+    }
+    // 퍼센트
+    else if (key === '%') {
+        appendValue('%');
+    }
+    // 엔터(Enter)는 계산 실행
+    else if (key === 'Enter') {
+        event.preventDefault(); // 폼 제출 방지
+        calculateResult();
+    }
+    // 백스페이스는 한 글자 삭제
+    else if (key === 'Backspace') {
+        backspace();
+    }
+    // ESC는 전체 지우기
+    else if (key === 'Escape') {
+        clearDisplay();
     }
 }
