@@ -37,7 +37,7 @@ div.calculator{
 /* 버튼들이 추가될 부분 */
 div.buttons {
     height: 400px;
-    display: grid;                              /* 2차원 적용, 행열 제어*/
+    display: grid;                              /* grid로 행열 제어*/
     grid-template-columns: repeat(4, 1fr);      /*4개의 열을 생성, 각 열의 너비는 똑같이 나눔*/
     gap: 10px;                                 /*각 사이의 갭을 설정, 저한텐 이게 딱 맞아유*/
 }
@@ -53,8 +53,23 @@ button {
     cursor: pointer;
 }
 
+button:hover{
+    background-color: #b3b0b0;
+    color: black;
+}
+
+/* 마우스 클릭했을때 */
+button:active{
+    transform: scale(0.96);
+    background-color: #787878;
+}
+
 button.orange {
     background-color: rgb(233, 109, 7);
+}
+
+button.gray{
+    background-color: gray;
 }
 
 /* '0' 버튼은 수평으로 2칸 차지할 수 있게 **/

@@ -36,8 +36,8 @@ div.calculator{
 
 /* 버튼들이 추가될 부분 */
 div.buttons {
-    height: auto;
-    display: flex;                              
+    height: auto;                               /* 높이는 자동으로 */
+    display: flex;                              /* flex 설정 */                      
     flex-wrap: wrap;      
     gap: 10px;                                 /*각 사이의 갭을 설정, 저한텐 이게 딱 맞아유*/
     justify-content: space-between;
@@ -53,6 +53,18 @@ button {
     color: white;
     transition: 0.2s;
     cursor: pointer;
+}
+
+/* 마우스 커서 갖다댔을때 */
+button:hover{
+    background-color: #b3b0b0;
+    color: black;
+}
+
+/* 마우스 클릭했을때 */
+button:active{
+    transform: scale(0.96);
+    background-color: #787878;
 }
 
 button.orange {
