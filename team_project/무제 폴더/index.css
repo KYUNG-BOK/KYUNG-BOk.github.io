@@ -36,15 +36,13 @@ div.calculator{
 
 /* 버튼들이 추가될 부분 */
 div.buttons {
-    height: auto;                               /* 높이는 자동으로 */
-    display: flex;                              /* flex 설정 */                      
-    flex-wrap: wrap;      
+    height: 400px;
+    display: grid;                              /* grid로 행열 제어*/
+    grid-template-columns: repeat(4, 1fr);      /*4개의 열을 생성, 각 열의 너비를 똑같이 나눔*/
     gap: 10px;                                 /*각 사이의 갭을 설정, 저한텐 이게 딱 맞아유*/
-    justify-content: space-between;
 }
 
 button {
-    flex: 0 0 calc(25% - 7.5px);
     height: 70px;
     font-size: 1.5em;
     border: none;
@@ -55,13 +53,6 @@ button {
     cursor: pointer;
 }
 
-/* 예외사항 : 0 두칸 차지하게 */
-button.zero {
-    flex: 0 0 calc(50% - 5px);  /* 2칸 너비 */
-}
-
-
-/* 마우스 커서 갖다댔을때 */
 button:hover{
     background-color: #b3b0b0;
     color: black;
@@ -69,7 +60,7 @@ button:hover{
 
 /* 마우스 클릭했을때 */
 button:active{
-    transform: scale(0.96);
+    transform: scale(0.96);     /* 요소의 크기를 96%로 축소하기 */
     background-color: #787878;
 }
 
@@ -77,7 +68,14 @@ button.orange {
     background-color: rgb(233, 109, 7);
 }
 
+button.gray{
+    background-color: gray;
+}
 
+/* '0' 버튼은 수평으로 2칸 차지할 수 있게 **/
+button.zero {
+    grid-column: span 2;  
+}
 
 /* 도전과제, 상단바 */
 .title_bar {

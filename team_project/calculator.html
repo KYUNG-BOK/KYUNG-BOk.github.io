@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>계산기만들기</title>
-    <link href="index.css" rel="stylesheet">
+    <link href="flex.css" rel="stylesheet">
 </head>
 <body>
     <div class="calculator">
@@ -17,29 +17,29 @@
         <div id="display" class="display">0</div>
         <div class="buttons">
             <!--버튼 시작되는 부분-->
-        <button onclick="clearDisplay()" class="gray">AC</button>
-        <button onclick="backspace()" class="gray">←</button>
-        <button onclick="appendValue('%')" class="gray">%</button>
-        <button onclick="appendValue('/')" class="orange">÷</button>
+        <button class="gray" data_value="clearDisplay">AC</button>
+        <button class="gray" data_value="clearDisplay">←</button>
+        <button class="gray" data_value="%">%</button>
+        <button class="orange" data_value="/">÷</button>
 
-        <button onclick="appendValue('7')">7</button>
-        <button onclick="appendValue('8')">8</button>
-        <button onclick="appendValue('9')">9</button>
-        <button onclick="appendValue('*')" class="orange">×</button>
+        <button data_value="7">7</button>
+        <button data_value="8">8</button>
+        <button data_value="9">9</button>
+        <button class="orange" data_value="*">×</button>
 
-        <button onclick="appendValue('4')">4</button>
-        <button onclick="appendValue('5')">5</button>
-        <button onclick="appendValue('6')">6</button>
-        <button onclick="appendValue('-')" class="orange">−</button>
+        <button data_value="4">4</button>
+        <button data_value="5">5</button>
+        <button data_value="6">6</button>
+        <button class="orange" data_value="-">−</button>
 
-        <button onclick="appendValue('1')">1</button>
-        <button onclick="appendValue('2')">2</button>
-        <button onclick="appendValue('3')">3</button>
-        <button onclick="appendValue('+')" class="orange">+</button>
+        <button data_value="1">1</button>
+        <button data_value="2">2</button>
+        <button data_value="3">3</button>
+        <button class="orange" data_value="+">+</button>
 
-        <button onclick="appendValue('0')" class="zero">0</button>
-        <button onclick="appendValue('.')">.</button>
-        <button onclick="calculateResult()" class="orange">=</button>
+        <button data_value="0" class="zero">0</button>
+        <button data_value=".">.</button>
+        <button class="orange" data_value="calculateResult">=</button>
         </div>
     </div>
     <script src="cal.js"></script>
