@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-/* 계산기 몸통, 가운데 정렬 */
+/* 가운데로 정렬 */
 body{
     display: flex;
     justify-content: center;
@@ -16,8 +16,8 @@ body{
 /* 계산기본체 */
 div.calculator{
     background-color: #3c3b3b;
-    border-radius: 10px;
-    padding: 20px;
+    border-radius: 20px;
+    padding: 18px;
     width: 360px;
 }
 
@@ -51,6 +51,10 @@ button {
     color: white;
     transition: 0.2s;
     cursor: pointer;
+}
+
+button.orange {
+    background-color: rgb(233, 109, 7);
 }
 
 /* '0' 버튼은 수평으로 2칸 차지할 수 있게 **/
