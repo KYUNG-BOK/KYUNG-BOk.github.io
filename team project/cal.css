@@ -1,0 +1,74 @@
+/* 초기화 */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 계산기 몸통, 가운데 정렬 */
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* 계산기본체 */
+div.calculator{
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 360px;
+    border: 1px solid gray;
+}
+
+/* 계산 결과값 출력되는 부분 */
+.display {
+    width: 100%;
+    height: 60px;
+    font-size: 2rem;
+    text-align: right;      /* 텍스트 오른쪽으로 정렬 */
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 10px;          /* 안쪽여백 설정, 텍스트가 너무 붙지 않도록 */
+    background: #6d6c6c;
+    color: #ffffff;
+}
+
+/* 버튼이 들어갈 부분 */
+div.buttons {
+    height: 400px;
+    border: 1px solid blue;
+}
+
+/* 도전과제, 상단바 */
+.title_bar {
+    height: 20px;
+    display: flex;
+    justify-content: flex-start;        /* 왼쪽에서 정렬시작 */
+    gap: 8px;           /* 버튼 간격 */
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* 도전과제, 신호등만들기 */
+.btn_red, .btn_yellow, .btn_green {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-block;          /* 옆으로 나란히 정렬 */
+}
+.btn_red {
+    background-color: red;
+    border: red;
+}
+
+.btn_yellow {
+    background-color: #ffbd2e;
+    border: #ffbd2e;
+}
+
+.btn_green {
+    background-color: rgb(74, 207, 74);
+    border:  rgb(74, 207, 74);
+}
