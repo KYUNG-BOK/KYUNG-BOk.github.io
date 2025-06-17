@@ -39,7 +39,7 @@ div.calculator{
 div.buttons {
     height: 400px;
     display: grid;                              /* 2차원 적용, 행열 제어*/
-    grid-template-columns: repeat(4, 1fr);    /*4개의 열을 생성, 각 열의 너비는 똑같이 나눔*/
+    grid-template-columns: repeat(4, 1fr);      /*4개의 열을 생성, 각 열의 너비는 똑같이 나눔*/
     gap: 10px;                                 /*각 사이의 갭을 설정, 저한텐 이게 딱 맞아유*/
 }
 
