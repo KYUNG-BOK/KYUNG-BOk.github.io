@@ -82,7 +82,7 @@ button.zero {
     height: 20px;
     display: flex;
     justify-content: flex-start;        /* 왼쪽에서 정렬시작 */
-    gap: 8px;                           /* 버튼 간격 */
+    gap: 1px;                           /* 버튼 간격 */
     align-items: center;
     margin-bottom: 10px;
 }
@@ -98,7 +98,6 @@ button.zero {
     background-color: red;
     border: red;
 }
-
 .btn_yellow {
     background-color: #ffbd2e;
     border: #ffbd2e;
