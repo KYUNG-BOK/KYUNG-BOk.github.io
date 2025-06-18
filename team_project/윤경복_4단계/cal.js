@@ -1,7 +1,8 @@
+// 25.06.17 , 3단계 : 계산기 버튼을 눌렀을때 디스플레이 또는 콘솔에 출력하기
 const display = document.getElementById('display');       // display 변수 생성, 값이 변하는 동적요소로 get사용
 const buttons = document.querySelectorAll('.buttons button');   // buttons내 button클래스들 전부 불러오기.
 
-// 4단계 : firstOperand, operator, secondOperand 변수 선언
+// 25.06.18 , 4단계 : firstOperand, operator, secondOperand 변수 선언
 let firstOperand = null;            // 첫번째 피연산자를 저장할 변수
 let operator = null;                // 연산자(+,-,*,/)를 저장할 변수
 let secondOperand = null;           // 두번째 피연산자를 저장할 변수
@@ -75,6 +76,8 @@ function appendValue(val){          // val은 사용자가 누른 값이 입력�
 }
 
 // AC버튼 눌렀을때 0으로 초기화하기!, 이젠 모든 변수를 초기화.
+// 3단계 도전과제 : AC버튼 눌렀을때 디스플레이 창 초기화
+// 4단계 : AC버튼 눌렀을때 모든 변수 초기화
 function clearDisplay() {
     display.innerText = '0';        
     firstOperand = null;        
@@ -145,4 +148,3 @@ function calculateResult() {
     waitingForSecondOperand = true;
 }
 
-//아직, 백스페이스는 설정을 안했기 때문에 "   " is not defined가 떠유.
