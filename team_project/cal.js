@@ -1,7 +1,7 @@
 const display = document.getElementById('display');       // display 변수 생성, 값이 변하는 동적요소로 get사용
 const buttons = document.querySelectorAll('.buttons button');   // buttons내 button클래스들 전부 불러오기.
 
-// 이벤트 리스너 -> 클릭감지, 'AC', '<-', '=' 제외의 버튼들은 눌러지는 값을 그대로 출력하기.
+// 이벤트 리스너 -> 클릭감지, 'AC', '<-', '=' 제외의 버튼들은 눌러지는 값을 그대로 출력하기, 백스페,리
 buttons.forEach(button =>{              // buttons내부에 있는 각 button에 반복작업, 이벤트 리스너를 하나씩 붙일거에유.
     button.addEventListener('click', () => {
         const value = button.getAttribute('data-value')     // getAttribute통해 'data-value' 속성 불러오기
@@ -10,7 +10,7 @@ buttons.forEach(button =>{              // buttons내부에 있는 각 button에
             case 'clearDisplay':
                 clearDisplay();
             break;
-            case 'backspace':
+            case 'backspace':다르
                 backspace();
             break;
             case 'calculateResult':ㅇ

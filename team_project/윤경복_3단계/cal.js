@@ -13,7 +13,7 @@ buttons.forEach(button =>{              // buttons내부에 있는 각 button에
             case 'backspace':
                 backspace();
             break;
-            case 'calculateResult':ㅇ
+            case 'calculateResult':
                 calculateResult();
             break;
             default:
