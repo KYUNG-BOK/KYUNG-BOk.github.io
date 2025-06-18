@@ -5,7 +5,6 @@ const buttons = document.querySelectorAll('.buttons button');   // buttons내 bu
 buttons.forEach(button =>{              // buttons내부에 있는 각 button에 반복작업, 이벤트 리스너를 하나씩 붙일거에유.
     button.addEventListener('click', () => {
         const value = button.getAttribute('data-value')     // getAttribute통해 'data-value' 속성 불러오기
-        console.log('눌려진 버튼 : ', value);               // 눌려진 버튼을 콘솔에 출력
         switch(value){
             case 'clearDisplay':
                 clearDisplay();
@@ -17,10 +16,22 @@ buttons.forEach(button =>{              // buttons내부에 있는 각 button에
                 calculateResult();
             break;
             default:
-                appendValue(value);
+                if (isNumber(value) || value === '.') {
+                    // 숫자나 소수점만 디스플레이에 출력
+                    appendValue(value);
+                } else {
+                    // 연산자는 콘솔에만 출력
+                    console.log('연산자 버튼 :', value);
+                }
         }
     });
 });
+
+// val이 숫자인지, 아닌지 판단하는 함수
+function isNumber(val) {               
+    return !isNaN(val);
+}
+
 
 // 디스플레이에 값을 출력해봅시댱.!
 function appendValue(val){          // val은 사용자가 누른 값이 입력됨
