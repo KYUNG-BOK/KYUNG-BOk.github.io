@@ -146,8 +146,10 @@ function calculateResult() {
     //화면에 표시된 값을 숫자로 변환하여 secondOperand에 저장
     secondOperand = parseFloat(display.innerText);
     // 결과값 호출
-    const result = calculate(firstOperand, secondOperand, operator);
-    // 게산된 결과를 문자열로 변환하여 호출.
+    let result = calculate(firstOperand, secondOperand, operator);
+    result = parseFloat(result.toFixed(10));
+
+    // 계산된 결과를 문자열로 변환하여 호출.
     display.innerText = String(result);
 
     // 상태 초기화

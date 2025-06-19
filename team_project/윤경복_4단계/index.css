@@ -82,7 +82,7 @@ button.zero {
     height: 20px;
     display: flex;
     justify-content: flex-start;        /* 왼쪽에서 정렬시작 */
-    gap: 6px;                           /* 버튼 간격 */
+    gap: 8px;                           /* 버튼 간격 */
     align-items: center;
     margin-bottom: 10px;
 }
