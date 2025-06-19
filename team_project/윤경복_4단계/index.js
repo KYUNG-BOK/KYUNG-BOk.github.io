@@ -146,7 +146,7 @@ function calculateResult() {
     secondOperand = parseFloat(display.innerText);
     // 결과값 호출
     let result = calculate(firstOperand, secondOperand, operator);
-    result = parseFloat(result.toFixed(10));
+    result = parseFloat(result.toFixed(2));
 
     // 계산된 결과를 문자열로 변환하여 호출.
     display.innerText = String(result);
