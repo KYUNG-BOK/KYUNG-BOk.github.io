@@ -120,8 +120,7 @@ function calculate(a, b, op) {
 // 플러스마이너스 전환, 오류수정 
 function toggleSign() {
     const currentValue = display.innerText;         // currentValue변수 선언, 디스플레이에 입력된 값을 저장.
-    if (currentValue === '0') return;               // 숫자가 0이면 무시
-        
+    if (currentValue === '0') return;               // 숫자가 0이면 무시        
     let newValue;           // newValue 변수 생성
     if (currentValue.startsWith('-')) {             // 문자열이 '-'로 시작하는지 ?
         newValue = currentValue.slice(1);      // '-' 시작이 맞다면, 문자열의 첫번째 '-' 잘라내기 
