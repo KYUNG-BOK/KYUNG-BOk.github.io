@@ -103,7 +103,6 @@ function handOperator(nextOperator) {
         console.log('firstOperand:', firstOperand);  // firstOperand 값 출력
 
     }
-                // go the hell java script//
 
     operator = nextOperator;
     console.log('operator:', operator);  // operator 출력
