@@ -6,7 +6,7 @@ const buttons = document.querySelectorAll('.buttons button');   // buttons내 bu
 let firstOperand = null;            // 첫번째 피연산자를 저장할 변수
 let operator = null;                // 연산자(+,-,*,/)를 저장할 변수
 let secondOperand = null;           // 두번째 피연산자를 저장할 변수
-let waitingForSecondOperand = false;        // 첫번째에서 다음 수를 입력하기 전의 수를 임시로 저장할 변수
+let waitingForSecondOperand = false;        // 첫번째에서 다음 수를 입력하기 전의 수를 임시로 저장할 변수, 두번째 숫자 기다리는 중 x
 
 // 이벤트 리스너 -> 클릭감지, 'AC', '±', '=' 제외의 버튼들은 눌러지는 값을 그대로 출력하기.
 buttons.forEach(button =>{              // buttons내부에 있는 각 button에 반복작업, 이벤트 리스너를 하나씩 붙일거에유.
