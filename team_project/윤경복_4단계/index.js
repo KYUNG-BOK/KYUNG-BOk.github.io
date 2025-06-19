@@ -21,7 +21,7 @@ buttons.forEach(button =>{              // buttons내부에 있는 각 button에
             break;
             case 'calculateResult':     // 결과
                 calculateResult();
-            break;      
+            break;     
             case '+':                   
             case '-':
             case '*':
@@ -40,16 +40,14 @@ buttons.forEach(button =>{              // buttons내부에 있는 각 button에
     });
 });
 
-
 // val이 숫자인지, 아닌지 판단하는 함수
 function isNumber(val) {               
     return !isNaN(val);
 }
 
-
 // 디스플레이에 값을 출력해봅시댱.!
 function appendValue(val){          // val은 사용자가 누른 값이 입력됨
-    if (waitingForSecondOperand) {          // 두 번째 숫자를 새로 입력 시작할 때는 디스플레이 초기화
+    if (waitingForSecondOperand) {          // 두 번째 숫자를 입력 시작할 때 디스플레이 초기화
         display.innerText = val === '.' ? '0.' : val;
         waitingForSecondOperand = false;
         return;
@@ -119,15 +117,25 @@ function calculate(a, b, op) {
     }
 }
 
-// 플러스마이너스 전환
+// 플러스마이너스 전환, 오류수정 
 function toggleSign() {
     const currentValue = display.innerText;         // currentValue변수 선언, 디스플레이에 입력된 값을 저장.
     if (currentValue === '0') return;               // 숫자가 0이면 무시
     
+    let newValue;           // newValue 변수 생성
     if (currentValue.startsWith('-')) {             // 문자열이 '-'로 시작하는지 ?
-        display.innerText = currentValue.slice(1);      // '-' 시작이 맞다면, 문자열의 첫번째 '-' 잘라내기 
+        newValue = currentValue.slice(1);      // '-' 시작이 맞다면, 문자열의 첫번째 '-' 잘라내기 
     } else {
-        display.innerText = '-' + currentValue;         // '-' 시작이 아니라면, 문자열 앞에 '-' 붙이기.
+        newValue = '-' + currentValue;         // '-' 시작이 아니라면, 문자열 앞에 '-' 붙이기.
+    }
+    display.innerText=newValue;         // 부호가 바뀐 숫자가 출력됨
+
+    if (operator === null){             // 연산자가 없을 경우
+        firstOperand = parseFloat(newValue);        // firstOperand를 newValue로 변경
+    } else if (waitingForSecondOperand === false){      // 연산자 선택 후, 두번째 숫자를 입력중이라면?
+        secondOperand = parseFloat(newValue);       // secondOperand에 저장
+    } else {                                // 둘다 아니라면
+        firstOperand = parseFloat(newValue);        // firstOperand에 저장.
     }
 }
 
@@ -145,4 +153,3 @@ function calculateResult() {
     secondOperand = null;
     waitingForSecondOperand = true;
 }
-
