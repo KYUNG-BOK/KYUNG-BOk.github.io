@@ -8,7 +8,7 @@ let operator = null;                // 연산자(+,-,*,/)를 저장할 변수
 let secondOperand = null;           // 두번째 피연산자를 저장할 변수
 let waitingForSecondOperand = false;        // 첫번째에서 다음 수를 입력하기 전의 수를 임시로 저장할 변수
 
-// 이벤트 리스너 -> 클릭감지, 'AC', '<-', '=' 제외의 버튼들은 눌러지는 값을 그대로 출력하기.
+// 이벤트 리스너 -> 클릭감지, 'AC', '±', '=' 제외의 버튼들은 눌러지는 값을 그대로 출력하기.
 buttons.forEach(button =>{              // buttons내부에 있는 각 button에 반복작업, 이벤트 리스너를 하나씩 붙일거에유.
     button.addEventListener('click', () => {
         const value = button.getAttribute('data-value')     // getAttribute통해 'data-value' 속성 불러오기
@@ -40,6 +40,7 @@ buttons.forEach(button =>{              // buttons내부에 있는 각 button에
     });
 });
 
+
 // val이 숫자인지, 아닌지 판단하는 함수
 function isNumber(val) {               
     return !isNaN(val);
@@ -51,31 +52,29 @@ function appendValue(val){          // val은 사용자가 누른 값이 입력�
     if (waitingForSecondOperand) {          // 두 번째 숫자를 새로 입력 시작할 때는 디스플레이 초기화
         display.innerText = val === '.' ? '0.' : val;
         waitingForSecondOperand = false;
-    } else {
-        if (display.innerText.length >= 16) return;     // 디스플레이 내 숫자가 넘치지 않게 16자로 제한
-
-        const current = display.innerText;
-
+        return;
+    } 
+    const current = display.innerText;
      // 1. 디스플레이에 출력된 숫자가 0일 경우
         if (current === '0') {
             if (val === '.') {              // 0상태에서 .을 눌렀을 경우
             display.innerText = '0.'; // '0.' 출력
             } else if (val !== '0') {
+                if (val.length > 16) return;
             display.innerText = val; // 0이 아닌 다른 숫자가 클릭되면 해당 숫자가 출력됨.
         }
+        return;
     }
 
         // 2. 0이 아닌 다른 숫자가 있을 경우
-        else {
         // 소수점이 이미 포함되어 있으면 또 추가하지 않음
             if (val === '.' && current.includes('.')) return;       // '.' 중복 입력 무시
 
+            if ((current + val).length > 16) return;
+
         display.innerText += val;       // 이외의 값은 뒤에 이어서 출력
-        }
-    }
 }
 
-// AC버튼 눌렀을때 0으로 초기화하기!, 이젠 모든 변수를 초기화.
 // 3단계 도전과제 : AC버튼 눌렀을때 디스플레이 창 초기화
 // 4단계 : AC버튼 눌렀을때 모든 변수 초기화
 function clearDisplay() {
@@ -100,35 +99,35 @@ function handOperator(nextOperator) {
         display.innerText = String(result);     // 디스플레이에 결과를 출력해줌
         firstOperand = result;          // 이번 계산의 결과값이, 다음 계산의 시작점
     }   else {
-        console.log('firstOperand:', firstOperand);  // firstOperand 값 출력
+        console.log('firstOperand:', firstOperand);  // 전 계산의 결과 값, firstOperand 값 출력
 
     }
-
+    // 4단계 도전과제 : result값 새로운 연산자 저장, 다음 숫자 입력 대기
     operator = nextOperator;
     console.log('operator:', operator);  // operator 출력
     waitingForSecondOperand = true;
 }
 
-// 실제로 계산 처리 하는 부분
+// 4단계 : 실제로 계산 처리 하는 부분
 function calculate(a, b, op) {
     switch(op) {
         case '+': return a + b;
         case '-': return a - b;
         case '*': return a * b;
-        case '/': return b !== 0 ? a / b : 'Error';
-        default: return b;
+        case '/': return b !== 0 ? a / b : 'Error';     // 0으로 나뉘게 될 경우 에러 반환.
+        default: return b;      // 잘못된 연산자가 올 경우, 두번째 숫자가 반환되게함
     }
 }
 
 // 플러스마이너스 전환
 function toggleSign() {
-    const currentValue = display.innerText;
-    if (currentValue === '0') return;
+    const currentValue = display.innerText;         // currentValue변수 선언, 디스플레이에 입력된 값을 저장.
+    if (currentValue === '0') return;               // 숫자가 0이면 무시
     
-    if (currentValue.startsWith('-')) {
-        display.innerText = currentValue.slice(1);
+    if (currentValue.startsWith('-')) {             // 문자열이 '-'로 시작하는지 ?
+        display.innerText = currentValue.slice(1);      // '-' 시작이 맞다면, 문자열의 첫번째 '-' 잘라내기 
     } else {
-        display.innerText = '-' + currentValue;
+        display.innerText = '-' + currentValue;         // '-' 시작이 아니라면, 문자열 앞에 '-' 붙이기.
     }
 }
 
