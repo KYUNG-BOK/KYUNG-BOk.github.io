@@ -85,14 +85,14 @@ function clearDisplay() {
 
 // 연산자 눌렀을때 계산하게
 function handOperator(nextOperator) {
-    const inputValue = display.innerText;       // 현재 디스플레이에 있는 값
+    const inputValue = parseFloat(display.innerText);       // 현재 디스플레이에 있는 값
 
     if (firstOperand === null) {        // firstOperand : null, 즉 처음눌린 숫자라면
-        firstOperand = parseFloat(inputValue);      // 현재 디스플레이에 있는 값을 숫자로 변환, 변수에 저장
+        firstOperand = inputValue;      // 현재 디스플레이에 있는 값을 숫자로 변환, 변수에 저장
         console.log('firstOperand:', firstOperand);  // firstOperand 값 출력
 
-    } else if (operator) {          // '+-*/'가 눌린 뒤, 다음 피연산자를 눌렀을 경우
-        secondOperand = parseFloat(inputValue);     //  눌러진 값을 숫자로 변환, 변수에 저장
+    } else if (operator && !waitingForSecondOperand) {          // '+-*/'가 눌린 뒤, 다음 피연산자를 눌렀을 경우
+        secondOperand = inputValue;     //  눌러진 값을 숫자로 변환, 변수에 저장
         const result = calculate(firstOperand, secondOperand, operator);    // calculate함수로 계산된 결과.
         display.innerText = String(result);     // 디스플레이에 결과를 출력해줌
         firstOperand = result;          // 이번 계산의 결과값이, 다음 계산의 시작점
@@ -157,3 +157,49 @@ function calculateResult() {
     secondOperand = null;
     waitingForSecondOperand = true;
 }
+
+// 키보드 입력 이벤트 추가
+document.addEventListener('keydown', (e) => {
+    const key = e.key;
+
+    if (!isNaN(key)) {
+        appendValue(key);
+        pressButtonByValue(key);
+    } else if (key === '.') {
+        appendValue('.');
+        pressButtonByValue('.');
+    } else if (key === '-') {
+        const current = display.innerText;
+        // 음수 * 음수인 상황도 배제할수 없음.
+        // 입력시작x, 0일 경우
+        if (current === '0' || (firstOperand === null && operator === null)) {
+            toggleSign(); // 부호 변경
+        }
+        // 연산자(+,*,/) 선택 직후라면 → 두 번째 음수도 입력 가능하게!
+        else if (operator !== null && waitingForSecondOperand) {
+            toggleSign();
+        }
+        // 그 외에는 '-' 뺄셈으로 처리.
+        else {
+            handOperator('-');
+        }
+
+        pressButtonByValue('-');
+    } else if (['+', '*', '/'].includes(key)) {
+        handOperator(key);
+        pressButtonByValue(key);
+    } else if (key === 'Enter' || key === '=') {
+        calculateResult();
+        pressButtonByValue('calculateResult');
+    } else if (key === 'Escape') {
+        clearDisplay();
+        pressButtonByValue('clearDisplay');
+    } else if (key === 'Backspace') {
+        const current = display.innerText;
+        if (current.length > 1) {
+            display.innerText = current.slice(0, -1);
+        } else {
+            display.innerText = '0';
+        }
+    }
+});
