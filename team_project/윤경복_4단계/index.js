@@ -21,7 +21,10 @@ buttons.forEach(button =>{              // buttons내부에 있는 각 button에
             break;
             case 'calculateResult':     // 결과
                 calculateResult();
-            break;     
+            break;  
+            case '^':                   // 제곱근 추가
+                handOperator('^');
+            break;
             case '+':                   
             case '-':
             case '*':
@@ -113,6 +116,7 @@ function calculate(a, b, op) {
         case '-': return a - b;
         case '*': return a * b;
         case '/': return b !== 0 ? a / b : 'Error';     // 0으로 나뉘게 될 경우 에러 반환.
+        case '^': return Math.pow(a, b);                // 제곱근 연산추가
         default: return b;      // 잘못된 연산자가 올 경우, 두번째 숫자가 반환되게함
     }
 }
@@ -192,15 +196,16 @@ document.addEventListener('keydown', (e) => {
     else {
         handOperator('-');
     }
-
         pressButtonByValue('-');
-    }
-    else if (['+', '*', '/'].includes(key)) {
+    } else if (['+', '*', '/'].includes(key)) {
         handOperator(key);
         pressButtonByValue(key);
     } else if (key === 'Enter' || key === '=') {
         calculateResult();
         pressButtonByValue('calculateResult');
+    } else if (key === '^') {                   // 제곱근 연산자 추가
+        handOperator('^');
+        pressButtonByValue('^');
     } else if (key === 'Escape') {
         clearDisplay();
         pressButtonByValue('clearDisplay');
