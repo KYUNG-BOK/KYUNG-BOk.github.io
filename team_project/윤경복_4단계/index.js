@@ -170,17 +170,17 @@ function calculateResult() {
     waitingForSecondOperand = true;
 }
 
-// 키보드 입력 이벤트 추가
+// 키보드 입력 이벤트리스너 추가
 document.addEventListener('keydown', (e) => {
     const key = e.key;
 
-    if (!isNaN(key)) {
-        appendValue(key);
-        pressButtonByValue(key);
-    } else if (key === '.') {
-        appendValue('.');
+    if (!isNaN(key)) {              // 숫자가 눌린다면
+        appendValue(key);           // 숫자 추가
+        pressButtonByValue(key);       // 해당버튼 눌림
+    } else if (key === '.') {       // . 이 눌린다면
+        appendValue('.');           // 점 추가
         pressButtonByValue('.');
-    } else if (key === '-') {
+    } else if (key === '-') {         // 지옥의 뺄셈(마이너스)
     const current = display.innerText;
         // 음수 * 음수인 상황도 배제할수 없음.
         // 입력시작x, 0일 경우
@@ -197,19 +197,19 @@ document.addEventListener('keydown', (e) => {
         handOperator('-');
     }
         pressButtonByValue('-');
-    } else if (['+', '*', '/'].includes(key)) {
+    } else if (['+', '*', '/'].includes(key)) {     // 기타연산자
         handOperator(key);
         pressButtonByValue(key);
-    } else if (key === 'Enter' || key === '=') {
+    } else if (key === 'Enter' || key === '=') {        // 계산 실행
         calculateResult();
         pressButtonByValue('calculateResult');
     } else if (key === '^') {                   // 제곱근 연산자 추가
         handOperator('^');
         pressButtonByValue('^');
-    } else if (key === 'Escape') {
+    } else if (key === 'Escape') {              // exe키
         clearDisplay();
         pressButtonByValue('clearDisplay');
-    } else if (key === 'Backspace') {
+    } else if (key === 'Backspace') {           // 백스페이스키
         const current = display.innerText;
         if (current.length > 1) {
             display.innerText = current.slice(0, -1);
@@ -230,5 +230,5 @@ function pressButtonByValue(value) {
     // 잠깐만 보여주고 사라지기.
     setTimeout(() => {
         button.classList.remove('active');
-    }, 150);
+    }, 50);
 }
