@@ -184,11 +184,9 @@ document.addEventListener('keydown', (e) => {
             handOperator('-');
         }
 
-    pressButtonByValue('-');
-}
-
 
         pressButtonByValue('-');
+        
     } else if (['+', '*', '/'].includes(key)) {
         handOperator(key);
         pressButtonByValue(key);
