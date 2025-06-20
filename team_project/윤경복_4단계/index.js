@@ -169,20 +169,24 @@ document.addEventListener('keydown', (e) => {
         appendValue('.');
         pressButtonByValue('.');
     } else if (key === '-') {
-        const current = display.innerText;
+    const current = display.innerText;
         // 음수 * 음수인 상황도 배제할수 없음.
         // 입력시작x, 0일 경우
-        if (current === '0' || (firstOperand === null && operator === null)) {
-            toggleSign(); // 부호 변경
+    if ((current === '0' && firstOperand === null && operator === null)) {
+        toggleSign(); // 부호 변경
         }
         // 연산자(+,*,/) 선택 직후라면 → 두 번째 음수도 입력 가능하게!
         else if (operator !== null && waitingForSecondOperand) {
-            toggleSign();
+        toggleSign();
         }
         // 그 외에는 '-' 뺄셈으로 처리.
         else {
             handOperator('-');
         }
+
+    pressButtonByValue('-');
+}
+
 
         pressButtonByValue('-');
     } else if (['+', '*', '/'].includes(key)) {
