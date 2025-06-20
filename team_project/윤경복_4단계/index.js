@@ -117,17 +117,24 @@ function calculate(a, b, op) {
     }
 }
 
-// 플러스마이너스 전환, 오류수정 
 function toggleSign() {
     const currentValue = display.innerText;         // currentValue변수 선언, 디스플레이에 입력된 값을 저장.
+
+    if ((currentValue === '0' && firstOperand === null && operator === null) ||
+        (operator !== null && waitingForSecondOperand)) {
+        display.innerText = '-'; // '-' 시작 표시
+        waitingForSecondOperand = false; // 두 번째 숫자 입력 시작
+        return;
+    }
+
     if (currentValue === '0') return;               // 숫자가 0이면 무시        
-    let newValue;           // newValue 변수 생성
+    let newValue;                                    // newValue 변수 생성
     if (currentValue.startsWith('-')) {             // 문자열이 '-'로 시작하는지 ?
         newValue = currentValue.slice(1);      // '-' 시작이 맞다면, 문자열의 첫번째 '-' 잘라내기 
     } else {
         newValue = '-' + currentValue;         // '-' 시작이 아니라면, 문자열 앞에 '-' 붙이기.
     }
-    display.innerText=newValue;         // 부호가 바뀐 숫자가 출력됨
+    display.innerText = newValue;         // 부호가 바뀐 숫자가 출력됨
 
     if (operator === null){             // 연산자가 없을 경우
         firstOperand = parseFloat(newValue);        // firstOperand를 newValue로 변경
@@ -137,6 +144,7 @@ function toggleSign() {
         firstOperand = parseFloat(newValue);        // firstOperand에 저장.
     }
 }
+
 
 // 계산 결과 
 function calculateResult() {
@@ -173,21 +181,21 @@ document.addEventListener('keydown', (e) => {
         // 음수 * 음수인 상황도 배제할수 없음.
         // 입력시작x, 0일 경우
     if ((current === '0' && firstOperand === null && operator === null)) {
-        toggleSign(); // 부호 변경
-        }
+        display.innerText = '-'; // 부호 변경 대신, "-"만 출력
+    }
         // 연산자(+,*,/) 선택 직후라면 → 두 번째 음수도 입력 가능하게!
-        else if (operator !== null && waitingForSecondOperand) {
-        toggleSign();
-        }
+    else if (operator !== null && waitingForSecondOperand) {
+        display.innerText = '-';    // 두 번째 숫자도 음수로 시작
+        waitingForSecondOperand = false;
+    }
         // 그 외에는 '-' 뺄셈으로 처리.
-        else {
-            handOperator('-');
-        }
-
+    else {
+        handOperator('-');
+    }
 
         pressButtonByValue('-');
-        
-    } else if (['+', '*', '/'].includes(key)) {
+    }
+    else if (['+', '*', '/'].includes(key)) {
         handOperator(key);
         pressButtonByValue(key);
     } else if (key === 'Enter' || key === '=') {
@@ -205,3 +213,17 @@ document.addEventListener('keydown', (e) => {
         }
     }
 });
+
+// 눌림 상태을 나타내는 코드.
+function pressButtonByValue(value) {
+    const button = document.querySelector(`[data-value="${value}"]`);
+    if (!button) return;
+
+    // 눌림 효과 추가
+    button.classList.add('active');
+
+    // 잠깐만 보여주고 사라지기.
+    setTimeout(() => {
+        button.classList.remove('active');
+    }, 150);
+}
